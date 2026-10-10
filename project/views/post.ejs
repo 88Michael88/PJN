@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title || "Post details" %></title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+
+<body>
+    <header>
+        <a href="/feed">MyFeed</a>
+    </header>
+
+    <main>
+        <article class="card card-top">
+            <div class="post-layout">
+                <div>
+                    <img
+                        id="post-image"
+                        class="post-image"
+                        src="<%= post.image_url || post.url %>"
+                        alt="<%= post.title || 'Post image' %>"
+                        loading="eager"
+                        onerror="this.onerror=null; this.style.display='none';"
+                    >
+
+                    <div class="stats">
+                        <span>
+                            ♥ <%= post.interaction?.likes ?? 0 %> likes
+                        </span>
+                        <span>
+                            💬 <%= post.interaction?.comments_count ?? 0 %>
+                            comments
+                        </span>
+                    </div>
+
+                    <div id="tags" class="tags">
+                        <% if (Array.isArray(post.tags)) { %>
+                            <% post.tags.forEach(tag => { %>
+                                <span class="tag"><%= tag %></span>
+                            <% }) %>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div>
+                    <h1><%= post.title || "Untitled post" %></h1>
+
+                    <div class="meta">
+                        <span>
+                            Date: <%= post.published_date || "Unknown" %>
+                        </span>
+                        <br>
+
+                        <span>
+                            Location: <%= post.location || "Unknown" %>
+                        </span>
+                        <br>
+
+                        <span>
+                            Category: <%= post.category || "Uncategorized" %>
+                        </span>
+                    </div>
+
+                    <div class="price">
+                        <%= post.price ?? "Price unavailable" %>
+                    </div>
+
+                    <p class="description">
+                        <%= post.description || "" %>
+                    </p>
+
+                    <button id="read-more-button" type="button">
+                        Read more
+                    </button>
+
+                    <p id="read-more-error" class="error hidden"></p>
+                </div>
+            </div>
+        </article>
+
+        <!-- LAZY-LOADED GENERAL DATA -->
+        <section class="card" id="extra-section">
+            <h2 class="section-title">Additional information</h2>
+
+            <p id="extra-intro">
+                Scroll down to load the remaining post attributes.
+            </p>
+
+            <div id="extra-content" class="hidden">
+                <h3>Specifications</h3>
+
+                <table>
+                    <tbody id="specifications"></tbody>
+                </table>
+
+                <h3 style="margin-top: 24px;">Product details</h3>
+
+                <ul id="extra-list" class="extra-list"></ul>
+            </div>
+
+            <div id="extra-status" class="loading">
+                Waiting for scroll...
+            </div>
+
+            <div id="lazy-sentinel"></div>
+        </section>
+
+        <!-- READ MORE DATA: loaded only after clicking -->
+        <section id="read-more-section" class="card hidden">
+            <h2>Read more</h2>
+
+            <div id="read-more-content"></div>
+
+            <p id="read-more-status" class="loading hidden">
+                Loading article...
+            </p>
+        </section>
+    </main>
+
+    <script> 
+        const postId = <%- JSON.stringify(String(post.id)) %>;
+    </script>
+
+    <script src="/JavaScript/post.js" defer>
+        console.log(postId);
+    </script>
+</body>
+</html>

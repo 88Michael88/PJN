@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f4f5f7;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+.feed {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.post {
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+    overflow-wrap: anywhere;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.post h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.meta {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-weight: bold;
+    color: #176b43;
+    margin: 12px 0;
+}
+
+.description {
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.read-more {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    color: #555;
+}
+
+.interaction {
+    display: flex;
+    gap: 18px;
+    margin-top: 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+#feed-status {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+.hidden {
+    display: none;
+}
