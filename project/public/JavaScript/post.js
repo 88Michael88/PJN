@@ -82,7 +82,9 @@ async function loadExtraData() {
             ["Condition", data.condition],
             ["Availability", data.availability],
             ["Seller", data.seller]
-        ].forEach(([key, value]) => addTableRow(key, value));
+        ]
+            .sort(() => Math.random() - 0.5)
+            .forEach(([key, value]) => addTableRow(key, value));
 
         // Other fields displayed as a list.
         [
@@ -107,6 +109,77 @@ async function loadExtraData() {
     }
 }
 
+function readOrderOne(data) {
+        addTextElement(
+            readMoreContent, "h3",
+            data.summary || "Summary unavailable"
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            data.full_text || "No additional text available.",
+            "description"
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            `Author: ${data.author || "Unknown"}`
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            `Published: ${data.published_date || "Unknown"}`
+        );
+}
+
+function readOrderTwo(data) {
+        addTextElement(
+            readMoreContent, "p",
+            data.full_text || "No additional text available.",
+            "description"
+        );
+
+        addTextElement(
+            readMoreContent, "h3",
+            data.summary || "Summary unavailable"
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            `Published: ${data.published_date || "Unknown"}`
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            `Author: ${data.author || "Unknown"}`
+        );
+}
+
+function readOrderThree(data) {
+        addTextElement(
+            readMoreContent, "p",
+            data.full_text || "No additional text available.",
+            "description"
+        );
+
+        addTextElement(
+            readMoreContent, "p",
+            `Published: ${data.published_date || "Unknown"}`
+        );
+
+        addTextElement(
+            readMoreContent, "h3",
+            data.summary || "Summary unavailable"
+        );
+
+
+        addTextElement(
+            readMoreContent, "p",
+            `Author: ${data.author || "Unknown"}`
+        );
+}
+
+
 async function loadReadMore() {
     if (readMoreLoaded || readMoreLoading) return;
 
@@ -130,26 +203,17 @@ async function loadReadMore() {
 
         const data = await response.json();
 
-        addTextElement(
-            readMoreContent, "h3",
-            data.summary || "Summary unavailable"
-        );
-
-        addTextElement(
-            readMoreContent, "p",
-            data.full_text || "No additional text available.",
-            "description"
-        );
-
-        addTextElement(
-            readMoreContent, "p",
-            `Author: ${data.author || "Unknown"}`
-        );
-
-        addTextElement(
-            readMoreContent, "p",
-            `Published: ${data.published_date || "Unknown"}`
-        );
+        switch (Math.floor(Math.random() * 3)) {
+            case 0:
+                readOrderOne(data);
+                break;
+            case 1:
+                readOrderTwo(data);
+                break;
+            case 2:
+                readOrderThree(data);
+                break;
+        }
 
         readMoreLoaded = true;
         readMoreButton.textContent = "Read more loaded";

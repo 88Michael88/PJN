@@ -18,4 +18,15 @@ API1Router.get('/posts/:id/read-more', (req, res) => {
     res.json(data);
 });
 
+API1Router.get('/feed', (req, res) => {
+    console.log("OFFSET: ", parseInt(req.query.offset) + 1);
+    console.log("LIMIT : ", parseInt(req.query.limit));
+    console.log("NEXT INDEX: ", parseInt(req.query.limit) + parseInt(req.query.offset) - 1);
+    const data = connection.readIDRange(parseInt(req.query.offset) + 1, parseInt(req.query.limit) + parseInt(req.query.offset));
+    console.log(data.length);
+
+    res.json(data);
+});
+
+
 export { API1Router }; 
