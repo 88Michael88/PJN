@@ -99,7 +99,7 @@ function createPostElement(post) {
 
     const description = document.createElement("div");
     description.className = "description";
-    description.textContent = post.description ?? "";
+    description.innerHTML = post.description ?? "";
     article.appendChild(description);
 
     if (post.read_more?.summary) {
@@ -111,7 +111,7 @@ function createPostElement(post) {
 
         const summary = document.createElement("p");
         summary.className = "post-read-more"
-        summary.textContent = post.read_more.summary;
+        summary.innerHTML = post.read_more.summary;
 
         readMore.append(heading, summary);
 

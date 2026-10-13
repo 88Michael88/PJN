@@ -35,13 +35,13 @@
                     <% } %>
 
                     <div class="description">
-                        <%= post.description ?? "" %>
+                        <%- post.description ?? "" %>
                     </div>
 
                     <% if (post.read_more?.summary) { %>
                         <div class="read-more">
                             <strong>Read more</strong>
-                            <p class="post_read_more"><%= post.read_more.summary %></p>
+                            <p class="post_read_more"><%- post.read_more.summary %></p>
 
                             <% if (post.read_more.source_url) { %>
                                 <a href="<%= post.read_more.source_url %>"
