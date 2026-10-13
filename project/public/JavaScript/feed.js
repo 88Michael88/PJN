@@ -74,15 +74,20 @@ function createPostElement(post) {
 
     const title = document.createElement("h2");
     title.textContent = post.title ?? "Untitled";
+    title.classList = "post-title";
     article.appendChild(title);
 
     const meta = document.createElement("div");
     meta.className = "meta";
-    meta.textContent = [
-        post.published_date ?? "Date unknown",
-        post.location,
-        post.category
-    ].filter(Boolean).join(" · ");
+    meta.innerHTML = [
+        { text: post.published_date ?? "Date unknown", class: "post-date" },
+        { text: post.location, class: "post-location" },
+        { text: post.category, class: "post-category" }
+    ]
+        .filter(item => item.text)
+        .map(item => `<span class="${item.class}">${item.text}</span>`)
+        .join(' <span class="separator">·</span> ');
+
     article.appendChild(meta);
 
     if (post.price != null) {
@@ -105,6 +110,7 @@ function createPostElement(post) {
         heading.textContent = "Read more";
 
         const summary = document.createElement("p");
+        summary.className = "post-read-more"
         summary.textContent = post.read_more.summary;
 
         readMore.append(heading, summary);
@@ -137,10 +143,12 @@ function createPostElement(post) {
     interaction.className = "interaction";
 
     const likes = document.createElement("span");
+    likes.className = "likes"
     likes.textContent =
         `♥ ${post.interaction?.likes ?? 0} likes`;
 
     const comments = document.createElement("span");
+    comments.className = "comments"
     comments.textContent =
         `💬 ${post.interaction?.comments_count ?? 0} comments`;
 

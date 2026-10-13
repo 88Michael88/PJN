@@ -15,16 +15,16 @@
             <% (posts || []).forEach(post => { %>
                 <article class="post">
                     <div class="post-header">
-                        <h2><%= post.title ?? "Untitled" %></h2>
+                        <h2 class="post_title"><%= post.title ?? "Untitled" %></h2>
                     </div>
 
                     <div class="meta">
-                        <span><%= post.published_date ?? "Date unknown" %></span>
+                        <span class="post_published_date"><%= post.published_date ?? "Date unknown" %></span>
                         <% if (post.location) { %>
-                            · <span><%= post.location %></span>
+                            · <span class="post_location"><%= post.location %></span>
                         <% } %>
                         <% if (post.category) { %>
-                            · <span><%= post.category %></span>
+                            · <span class="post_category"><%= post.category %></span>
                         <% } %>
                     </div>
 
@@ -41,7 +41,7 @@
                     <% if (post.read_more?.summary) { %>
                         <div class="read-more">
                             <strong>Read more</strong>
-                            <p><%= post.read_more.summary %></p>
+                            <p class="post_read_more"><%= post.read_more.summary %></p>
 
                             <% if (post.read_more.source_url) { %>
                                 <a href="<%= post.read_more.source_url %>"
@@ -54,8 +54,8 @@
                     <% } %>
 
                     <div class="interaction">
-                        <span>♥ <%= post.interaction?.likes ?? 0 %> likes</span>
-                        <span>💬 <%= post.interaction?.comments_count ?? 0 %> comments</span>
+                        <span class="likes">♥ <%= post.interaction?.likes ?? 0 %> likes</span>
+                        <span class="comments">💬 <%= post.interaction?.comments_count ?? 0 %> comments</span>
                     </div>
                 </article>
             <% }) %>
