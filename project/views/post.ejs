@@ -26,10 +26,10 @@
                     >
 
                     <div class="stats">
-                        <span>
+                        <span class="like">
                             ♥ <%= post.interaction?.likes ?? 0 %> likes
                         </span>
-                        <span>
+                        <span class="comment">
                             💬 <%= post.interaction?.comments_count ?? 0 %>
                             comments
                         </span>
@@ -48,17 +48,17 @@
                     <h1><%= post.title || "Untitled post" %></h1>
 
                     <div class="meta">
-                        <span>
+                        <span class="post_publishing_date">
                             Date: <%= post.published_date || "Unknown" %>
                         </span>
                         <br>
 
-                        <span>
+                        <span class="post_location">
                             Location: <%= post.location || "Unknown" %>
                         </span>
                         <br>
 
-                        <span>
+                        <span class="post_category">
                             Category: <%= post.category || "Uncategorized" %>
                         </span>
                     </div>

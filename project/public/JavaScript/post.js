@@ -39,6 +39,7 @@ function addTableRow(key, value) {
     const cell = document.createElement("td");
 
     heading.textContent = key;
+    heading.className = `post-${key.toLowerCase()}`
     cell.textContent = value == null ? "Not available" :
         typeof value === "object" ? JSON.stringify(value) :
         String(value);
@@ -112,23 +113,26 @@ async function loadExtraData() {
 function readOrderOne(data) {
         addTextElement(
             readMoreContent, "h3",
-            data.summary || "Summary unavailable"
+            data.summary || "Summary unavailable",
+            "summary"
         );
 
         addTextElement(
             readMoreContent, "p",
             data.full_text || "No additional text available.",
-            "description"
+            "description",
         );
 
         addTextElement(
             readMoreContent, "p",
-            `Author: ${data.author || "Unknown"}`
+            `Author: ${data.author || "Unknown"}`,
+            "author"
         );
 
         addTextElement(
             readMoreContent, "p",
-            `Published: ${data.published_date || "Unknown"}`
+            `Published: ${data.published_date || "Unknown"}`,
+            "post_published_at"
         );
 }
 
@@ -141,17 +145,20 @@ function readOrderTwo(data) {
 
         addTextElement(
             readMoreContent, "h3",
-            data.summary || "Summary unavailable"
+            data.summary || "Summary unavailable",
+            "summary"
         );
 
         addTextElement(
             readMoreContent, "p",
-            `Published: ${data.published_date || "Unknown"}`
+            `Published: ${data.published_date || "Unknown"}`,
+            "post_published_at"
         );
 
         addTextElement(
             readMoreContent, "p",
-            `Author: ${data.author || "Unknown"}`
+            `Author: ${data.author || "Unknown"}`,
+            "author"
         );
 }
 
@@ -164,18 +171,21 @@ function readOrderThree(data) {
 
         addTextElement(
             readMoreContent, "p",
-            `Published: ${data.published_date || "Unknown"}`
+            `Published: ${data.published_date || "Unknown"}`,
+            "post_published_at"
         );
 
         addTextElement(
             readMoreContent, "h3",
-            data.summary || "Summary unavailable"
+            data.summary || "Summary unavailable",
+            "summary"
         );
 
 
         addTextElement(
             readMoreContent, "p",
-            `Author: ${data.author || "Unknown"}`
+            `Author: ${data.author || "Unknown"}`,
+            "author"
         );
 }
 
